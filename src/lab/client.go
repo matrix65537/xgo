@@ -12,16 +12,19 @@ var quit chan bool
 func main() {
 	var tcpAddr *net.TCPAddr
 
-	tcpAddr, _ = net.ResolveTCPAddr("tcp", "127.0.0.1:9999")
-	conn, _ := net.DialTCP("tcp", nil, tcpAddr)
-	defer conn.Close()
+	for i := 0; i < 1000; i++ {
+		tcpAddr, _ = net.ResolveTCPAddr("tcp", "127.0.0.1:9999")
+		conn, _ := net.DialTCP("tcp", nil, tcpAddr)
+		defer conn.Close()
 
-	fmt.Println("connected!")
+		fmt.Println("connected!")
 
-	go handler(conn)
+		go handler(conn)
 
-	b := []byte("ABCD\n")
-	conn.Write(b)
+		b := []byte("ABCD\n")
+		conn.Write(b)
+
+	}
 
 	<-quit
 
