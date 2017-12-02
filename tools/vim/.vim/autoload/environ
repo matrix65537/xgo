@@ -1,0 +1,17 @@
+#!/usr/bin/env python
+# -*- coding:utf-8 -*-
+
+{
+    "tabular" : ["表格环境", "\\begin{tabular}[位置]{列格式}"],
+    "tabular*" : ["表格环境", "\\begin{tabular*}{宽度}[位置]{列格式}"],
+    "itemize" : "无序列举",
+    "list" : "有序列举",
+    "center" : "居中环境",
+    "array" : ["列表环境", "\\begin{array}[位置]{列格式}"],
+    "minipage" : "小页环境",
+    "picture" : "图片环境",
+    "tabbing" : "无框线表格环境",
+    "longtable" : "跨页表格环境，需要宏包longtable",
+    "supertabular" : "多页表格环境，需要宏包supertabular",
+    "tabularx" : "可调列宽表格环境，需要宏包tabularx",
+}
