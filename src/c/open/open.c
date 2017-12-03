@@ -7,55 +7,38 @@
 #include <fcntl.h>
 #include <unistd.h>
 
-#define MAX_FILE_COUNT  (16 * 1024)
-
-#define BLOCK_SIZE	(256 * 1024 * 1024)
-
 int main(int argc, char* argv[])
 {
     int fd;
     int ret;
-    int i;
     char buf[0x100];
-    off_t offset;
-    uint8_t* pData;
+    memset(buf, 'A', sizeof(buf));
     
-    pData = malloc(BLOCK_SIZE);
-    memset(pData, 'A', BLOCK_SIZE);
-    if(pData == NULL)
+    fd = open(argv[1], O_RDWR | O_CREAT);
+    if(fd == -1)
     {
-	exit(1);
+        perror("open error");
+        exit(1);
     }
-    for(i = 0; i < MAX_FILE_COUNT; ++i)
+
+    ret = write(fd, buf, 0x10);
+    if(ret == -1)
     {
-        snprintf(buf, sizeof(buf), "%08X.c", i);
-        printf("%s\n", buf);
-        fd = open(buf, O_RDWR | O_CREAT);
-        if(fd == -1) {
-            perror(argv[0]);
-            break;
-        }
+        perror("write error");
+        exit(1);
+    }
+    ret = read(fd, buf, 0x10);
+    if(ret == -1)
+    {
+        perror("read error");
+        exit(1);
+    }
 
-	/*
-	offset = lseek(fd, (1024 * 1024), SEEK_CUR); 
-        if(offset == -1) {
-            perror(argv[0]);
-            break;
-        }
-	*/
-	ret = write(fd, pData, BLOCK_SIZE);
-        if(ret == -1)
-        {
-            perror(argv[0]);
-            break;
-        }
-
-    	ret = close(fd);
-        if(ret == -1)
-        {
-            perror(argv[0]);
-            break;
-        }
+    ret = close(fd);
+    if(ret == -1)
+    {
+        perror("close error");
+        exit(1);
     }
     return 0;
 }
