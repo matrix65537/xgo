@@ -1,0 +1,4 @@
+user name:$1$POGlQU4G$KbiuEgruv016cs7ga9Cpl1
+$1$POGlQU4G$KbiuEgruv016cs7ga9Cpl1
+Successfully authecticated. UID = 1000
+user name:

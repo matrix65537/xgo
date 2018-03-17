@@ -10,6 +10,6 @@
 
 int main(int argc, char* argv[])
 {
-    printf("T \n");
+    printf("ABCD\n");
     return 0;
 }
