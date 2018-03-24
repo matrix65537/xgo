@@ -10,10 +10,17 @@
 
 int main(int argc, char* argv[])
 {
-    int i;
-    for(i = 0; i < argc; ++i)
+    unsigned int i = 0x01;
+    uint8_t* p;
+    printf("sizeof(unsigned int) = %d\n", sizeof(i));
+    p = (uint8_t*)&i;
+    if(*p == 0x01)
     {
-        printf("arg%02d: %s\n", i, argv[i]);
+        printf("little endian\n");
+    }
+    else
+    {
+        printf("big endian\n");
     }
     return 0;
 }

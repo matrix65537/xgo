@@ -8,12 +8,17 @@
 #include <unistd.h>
 #include "util.h"
 
+extern char** environ;
+
 int main(int argc, char* argv[])
 {
-    int i;
-    for(i = 0; i < argc; ++i)
+    char** ep = environ;
+    int i = 0;
+    while(*ep)
     {
-        printf("arg%02d: %s\n", i, argv[i]);
+        printf("env%02d: %s\n", i, *ep);
+        ep++;
+        i++;
     }
     return 0;
 }

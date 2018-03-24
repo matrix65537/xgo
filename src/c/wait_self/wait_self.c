@@ -10,10 +10,17 @@
 
 int main(int argc, char* argv[])
 {
-    int i;
-    for(i = 0; i < argc; ++i)
+    int status;
+    pid_t pid;
+    printf("before wait\n");
+    pid = wait(&status);
+    if(pid == -1)
     {
-        printf("arg%02d: %s\n", i, argv[i]);
+        perror("wait error");
+    }
+    else
+    {
+        printf("after wait, pid = %d\n", pid);
     }
     return 0;
 }

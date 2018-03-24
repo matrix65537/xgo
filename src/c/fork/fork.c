@@ -29,7 +29,14 @@ int main(int argc, char* argv[])
     }
     else if(pid == 0)
     {
-        execv(argv[1], &argv[2]);
+        char *const envp[] = {
+            "A=1",
+            "B=2",
+            "C=/home/laoguo",
+            "D=hello",
+            NULL,
+        };
+        execve(argv[1], &argv[2], envp);
     }
     else
     {
