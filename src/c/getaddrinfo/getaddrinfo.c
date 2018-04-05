@@ -38,7 +38,7 @@ int main(int argc, char* argv[])
 
     for(rp = result; rp != NULL; rp = rp->ai_next)
     {
-        printf("(%2d, %2d, %2d)\n", rp->ai_family, rp->ai_socktype, rp->ai_protocol);
+        printf("(family = %2d, socktype = %2d, protocol = %2d)\n", rp->ai_family, rp->ai_socktype, rp->ai_protocol);
     }
     freeaddrinfo(result);
 
