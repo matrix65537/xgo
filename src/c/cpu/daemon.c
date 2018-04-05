@@ -53,16 +53,6 @@ int main(int argc, char* argv[])
 
     while(1)
     {
-        time_t t;
-        sleep(1);
-        t = time(NULL);
-        timeinfo = ctime(&t);
-        ret = write(fd, timeinfo, strlen(timeinfo));
-        if(ret == -1)
-        {
-            perror("write error");
-            exit(1);
-        }
     }
     return 0;
 }
