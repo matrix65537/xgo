@@ -1,4 +1,4 @@
-CFLAGS = -g -O0 -m32
+CFLAGS = -g -O0
 all:
 	gcc $(CFLAGS) -c -g -I../include *.c
 	ar -rcs libutil.a *.o
