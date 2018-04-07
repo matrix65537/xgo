@@ -20,6 +20,7 @@ void util_hex_dump(char* name, uint8_t* pData, uint32_t len)
     remain = len % col;
     for(i = 0; i < row; ++i)
     {
+        printf("0x%04X: ", i);
         for(j = i * col; j < (i + 1) * col; ++j)
         {
             printf("%02X ", pData[j]);
@@ -41,6 +42,10 @@ void util_hex_dump(char* name, uint8_t* pData, uint32_t len)
         printf("\n");
     }
     j = row * col;
+    if(remain > 0)
+    {
+        printf("0x%04X: ", i);
+    }
     while(j < (row + 1) * col)
     {
         if(j < len)
