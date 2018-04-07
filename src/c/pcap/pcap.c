@@ -75,6 +75,7 @@ void getPacket(u_char* arg, const struct pcap_pkthdr* pkthdr, const u_char* pack
     tcp_header* ptcp_head;
     uint16_t etype;
     int* id = (int*)arg;
+    printf("################################################################################\n");
     printf("            id: %d\n", *id);
     *id += 1;
     printf(" Packet length: %d\n", pkthdr->len);
@@ -230,7 +231,7 @@ int main(int argc, char* argv[])
         printf("error: %s\n", errbuf);
     }
 
-    err = pcap_lookupnet("lo", &netp, &maskp, errbuf);
+    err = pcap_lookupnet(dev, &netp, &maskp, errbuf);
     if(err == -1)
     {
         printf("couldn't detect the ip and maskp: %s\n", errbuf);

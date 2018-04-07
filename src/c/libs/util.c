@@ -11,7 +11,7 @@ void util_hex_dump(char* name, uint8_t* pData, uint32_t len)
     int row;
     int remain;
     uint8_t v;
-    printf("################################################################################\n");
+    //printf("################################################################################\n");
     if(name)
     {
         printf("%s[len = 0x%04X, %4d bytes]\n", name, len, len);
