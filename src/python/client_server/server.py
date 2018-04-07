@@ -5,7 +5,41 @@ import sys
 import os
 import argparse
 import socket
-from scplib import *
+#from scplib import *
+
+def ds(bytes, include_ascii = False, include_addr = False, colsize = 0x10):
+    assert(isinstance(bytes, str))
+    length = len(bytes)
+    i = 0
+    L = []
+    rownum = 0
+    while True:
+        if i >= length:
+            break
+        T = []
+        if include_addr:
+            T.append("%04X: "  %(rownum * colsize))
+        for j in range(i, i + colsize):
+            if j < length:
+                T.append("%02X " %ord(bytes[j]))
+            else:
+                T.append("   ")
+            if j % colsize == (colsize / 2 - 1):
+                T.append(" ")
+        if include_ascii:
+            T.append("\t")
+            for j in range(i, i + colsize):
+                if j < length:
+                    if bytes[j] in PRINT_STRING:
+                        T.append(bytes[j])
+                    else:
+                        T.append(".")
+                else:
+                    T.append("  ")
+        L.append("".join(T))
+        i += colsize
+        rownum += 1
+    return "\n".join(L)
 
 def main():
     s = socket.socket()
