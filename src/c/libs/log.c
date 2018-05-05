@@ -18,7 +18,7 @@ void log_output(int level, const char* fmt, ...)
 {
     va_list args;
 
-    if(level < s_log_level)
+    if(level > s_log_level)
     {
         return;
     }
