@@ -79,7 +79,7 @@ void util_hex_dump(char* name, uint8_t* pData, uint32_t len)
 }
 
 
-void test_hex_dump()
+void test_util()
 {
     int i;
     char buf[0x100];
@@ -93,10 +93,3 @@ void test_hex_dump()
     util_hex_dump("buf", buf, 0x100);
 }
 
-#if DEBUG_UTIL
-int main()
-{
-    test_hex_dump();
-    return 0;
-}
-#endif
