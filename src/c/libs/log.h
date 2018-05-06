@@ -1,8 +1,6 @@
 #ifndef __LOG_H__
 #define __LOG_H__
 
-#define __WIN32__
-
 enum
 {
     LOG_LEVEL_NONE  = 0,
@@ -18,7 +16,7 @@ void log_set_level(int level);
 
 int log_get_level();
 
-void log_output(int level, const char* fmt, ...);
+void log_output(const char* tag, int level, const char* fmt, ...);
 
 #ifdef __WIN32__
 	#define log_error(fmt, ...)     log_output(LOG_LEVEL_ERRO, fmt, __VA_ARGS__);
@@ -28,12 +26,12 @@ void log_output(int level, const char* fmt, ...);
 	#define log_develop(fmt, ...)   log_output(LOG_LEVEL_DEVP, fmt, __VA_ARGS__);
 	#define log_verbose(fmt, ...)   log_output(LOG_LEVEL_VERB, fmt, __VA_ARGS__);
 #else
-	#define log_error(fmt, arg ...)     log_output(LOG_LEVEL_ERRO, fmt, ##arg);
-	#define log_warning(fmt, arg ...)   log_output(LOG_LEVEL_WARN, fmt, ##arg);
-	#define log_info(fmt, arg ...)      log_output(LOG_LEVEL_INFO, fmt, ##arg);
-	#define log_debug(fmt, arg ...)     log_output(LOG_LEVEL_DBUG, fmt, ##arg);
-	#define log_develop(fmt, arg ...)   log_output(LOG_LEVEL_DEVP, fmt, ##arg);
-	#define log_verbose(fmt, arg ...)   log_output(LOG_LEVEL_VERB, fmt, ##arg);
+	#define log_error(fmt, arg ...)     log_output("ERRO", LOG_LEVEL_ERRO, fmt, ##arg);
+	#define log_warning(fmt, arg ...)   log_output("WARN", LOG_LEVEL_WARN, fmt, ##arg);
+	#define log_info(fmt, arg ...)      log_output("INFO", LOG_LEVEL_INFO, fmt, ##arg);
+	#define log_debug(fmt, arg ...)     log_output("DBUG", LOG_LEVEL_DBUG, fmt, ##arg);
+	#define log_develop(fmt, arg ...)   log_output("DEVP", LOG_LEVEL_DEVP, fmt, ##arg);
+	#define log_verbose(fmt, arg ...)   log_output("VERB", LOG_LEVEL_VERB, fmt, ##arg);
 #endif
 
 #endif

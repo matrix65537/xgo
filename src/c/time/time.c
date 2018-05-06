@@ -15,6 +15,7 @@ int main(int argc, char* argv[])
     struct timeval tv;
     int ret;
     time_t t;
+    char buf[0x40];
 
     ret = gettimeofday(&tv, NULL);
     if(ret == -1)
@@ -30,6 +31,9 @@ int main(int argc, char* argv[])
 
     printf("   gmtime: %s", asctime(gmtime(&t)));
     printf("localtime: %s", asctime(localtime(&t)));
+
+    strftime(buf, sizeof(buf), "%F %T", localtime(&t));
+    printf("%s\n", buf);
 
 
     return 0;

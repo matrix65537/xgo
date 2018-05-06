@@ -12,7 +12,7 @@ def b2s(bytes):
 ip = '127.0.0.1'
 port = 9090
 
-COUNT = 10
+COUNT = 1
 SOCK_COUNT = 10
 
 def recvall(sock, length):
