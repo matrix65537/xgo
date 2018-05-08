@@ -20,6 +20,8 @@
 
 #define AE_NOTUSED(V) ((void)V)
 
+typedef int SOCKET;
+#define INVALID_SOCKET -1
 
 struct aeEventLoop;
 

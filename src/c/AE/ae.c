@@ -1,6 +1,9 @@
 #include <stdlib.h>
 #include <stdio.h>
+#include <sys/types.h>
+#include <sys/socket.h>
 #include "ae.h"
+#include "log.h"
 
 #include "ae_select.c"
 
@@ -212,6 +215,7 @@ static int processTimeEvents(aeEventLoop* eventLoop)
 	te = eventLoop->timeEventHead;
 	maxId = eventLoop->timeEventNextId - 1;
 
+    log_develop("processTimeEvents\n");
 	while (te)
 	{
 		long now_sec, now_ms;
@@ -306,7 +310,6 @@ int aeProcessEvents(aeEventLoop* eventLoop, int flags)
 			}
 		}
 
-		//printf("aeApiPoll:\n");
 		numevents = aeApiPoll(eventLoop, tvp);
 		for (j = 0; j < numevents; ++j)
 		{
@@ -381,7 +384,6 @@ void aeMain(aeEventLoop* eventLoop)
 		{
 			eventLoop->beforesleep(eventLoop);
 		}
-		//printf("ProcessEvents:\n");
 		aeProcessEvents(eventLoop, AE_ALL_EVENTS);
 	}
 	

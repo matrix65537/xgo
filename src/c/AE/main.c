@@ -1,9 +1,23 @@
 #include <stdio.h>
-#include <WinSock.h>
-#include <stdint.h>
-#include "ae.h"
-#include "ring.h"
+#include <string.h>
+#include <stdlib.h>
+#include <sys/types.h>
+#include <sys/stat.h>
+#include <sys/time.h>
+#include <fcntl.h>
+#include <unistd.h>
+#include "util.h"
+#include "time.h"
 
+#include <stdint.h>
+#include <stdlib.h>
+#include "ae.h"
+#include <sys/types.h>
+#include <sys/socket.h>
+#include <arpa/inet.h>
+#include <netinet/in.h>
+
+#include "ring.h"
 #include "log.h"
 #include "util.h"
 
@@ -19,8 +33,8 @@ typedef struct DataNode{
 
 #define LISTEN_PORT 9090
 
-#define TIMER1_MS	4000
-#define TIMER2_MS	10000
+#define TIMER1_MS	3000
+#define TIMER2_MS	5000
 
 int Timer1(struct aeEventLoop* eventLoop, long long id, void* clientData)
 {
@@ -52,7 +66,8 @@ void ListenProc(struct aeEventLoop* eventLoop, int fd, void* clientData, int mas
 	else
 	{
 		Ring* ring = create_ring(RING_TEMP_BUF_SIZE);
-		log_info("Accepted client:%s:%d fd = %d\n", inet_ntoa(client_addr.sin_addr), ntohs(client_addr.sin_port), ret);   
+        char* paddr = inet_ntoa(client_addr.sin_addr);
+		log_info("Accepted client: %s:%d fd = %d\n", paddr, ntohs(client_addr.sin_port), ret); 
 		aeCreateFileEvent(eventLoop, ret, AE_READABLE, RWProc, ring);
 	}
 }
@@ -72,8 +87,8 @@ void RWProc(struct aeEventLoop* eventLoop, int fd, void* clientData, int mask)
 
 		if(ret <= 0)
 		{
-			log_error("recv error, close socket %d.\n", fd);
-			closesocket(fd);
+			log_info("client exit, close socket %d.\n", fd);
+			close(fd);
 			delete_ring(ring);
 		}
 		else
@@ -99,8 +114,8 @@ void RWProc(struct aeEventLoop* eventLoop, int fd, void* clientData, int mask)
 
 		if(ret <= 0)
 		{
-			log_error("send error, close socket.\n");
-			closesocket(fd);
+			log_error("client exit, close socket.\n");
+			close(fd);
 			delete_ring(ring);
 		}
 		else
@@ -120,29 +135,58 @@ void RWProc(struct aeEventLoop* eventLoop, int fd, void* clientData, int mask)
 	}
 }
 
+void go_daemon(void)
+{
+    pid_t pid;
+
+    pid = fork();
+    if(pid < 0)
+    {
+        perror("fork error");
+        exit(1);
+    }
+    else if(pid != 0)
+    {
+        exit(0);
+    }
+
+    setsid();
+
+    if(chdir("/") < 0)
+    {
+        perror("chdir error");
+        exit(1);
+    }
+    close(0);
+    open("/dev/null", O_RDWR);
+    dup2(0, 1);
+    dup2(0, 2);
+}
+
 extern void test_log();
 int main()
 {
 	int server_listen_fd;
 	struct sockaddr_in server_addr;
 	int server_addr_len;
-	char on = 1;
+	int on = 1;
 	int r;
 	aeEventLoop* eventLoop = aeCreateEventLoop();
 
-	WSADATA wsaData;
-	WSAStartup(0x0202, &wsaData);
+    go_daemon();
 
-	log_set_level(LOG_LEVEL_INFO);
+	log_set_level(LOG_LEVEL_DEVP);
 
 	server_listen_fd = socket(AF_INET, SOCK_STREAM, 0);
 	if (server_listen_fd == INVALID_SOCKET)
 	{
+        perror("socket error");
 		exit(1);
 	}
 
-	if (setsockopt(server_listen_fd, SOL_SOCKET, SO_REUSEADDR, &on, sizeof(on)) == SOCKET_ERROR)
+	if (setsockopt(server_listen_fd, SOL_SOCKET, SO_REUSEADDR, &on, sizeof(on)) == -1)
 	{
+        perror("setsockopt error");
 		exit(1);
 	}
 
@@ -152,20 +196,22 @@ int main()
 
 	server_addr_len = sizeof(server_addr);
 	r = bind(server_listen_fd, (struct sockaddr*)&server_addr, server_addr_len);
-	if (r == SOCKET_ERROR)
+	if (r == -1)
 	{
+        perror("bind error");
 		exit(1);
 	}
 	r = listen(server_listen_fd, 0x100);
-	if (r == SOCKET_ERROR)
+	if (r == -1)
 	{
+        perror("listen error");
 		exit(1);
 	}
 
-	aeCreateFileEvent(eventLoop, server_listen_fd, AE_READABLE, ListenProc, NULL);
+	aeCreateTimeEvent(eventLoop, TIMER1_MS, Timer1, NULL, NULL);
+	aeCreateTimeEvent(eventLoop, TIMER2_MS, Timer2, NULL, NULL);
 
-	//aeCreateTimeEvent(eventLoop, TIMER1_MS, Timer1, NULL, NULL);
-	//aeCreateTimeEvent(eventLoop, TIMER2_MS, Timer2, NULL, NULL);
+	aeCreateFileEvent(eventLoop, server_listen_fd, AE_READABLE, ListenProc, NULL);
 
 	aeMain(eventLoop);
 
