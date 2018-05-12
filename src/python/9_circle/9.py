@@ -21,14 +21,15 @@ counter = 0
 1: 下
 '''
 
-STATE_UP            = 0x00
-STATE_DOWN          = 0x01
+STATE_UP            = 0x01
+STATE_DOWN          = 0x00
 STATE_XOR_MASK      = 0x01
 
 INIT_STATE          = STATE_UP
 
 states = [INIT_STATE] * 10
 L = []
+L2 = []
 
 def check_all(n, state):
     '''
@@ -52,6 +53,7 @@ def GO(n, state):
             counter += 1
             states[n] ^= STATE_XOR_MASK
             L.append((n, state))
+            L2.append(states[1:])
             #print u"% 3d:    %d => %d" %(counter, n, state)
         return
     elif n == 0:
@@ -66,17 +68,21 @@ def GO(n, state):
             counter += 1
             states[n] ^= STATE_XOR_MASK
             L.append((n, state))
+            L2.append(states[1:])
             #print u"% 3d:    %d => %d" %(counter, n, state)
         GO(n - 2, STATE_UP)
         if state == STATE_DOWN:
             GO(n - 1, STATE_DOWN)
         #print "%d OK ================" %(n)
 
-def dump(L):
+def dump(L, L2):
+    assert(len(L) == len(L2))
     for i in range(len(L)):
         n, state = L[i]
+        states = L2[i]
+        states.reverse()
         info = u"上" if state == STATE_UP else u"下"
-        print "step%03d: %d %s" %(i + 1, n, info)
+        print "step%03d: %d %s" %(i + 1, n, info), states
 
 def main():
     global L
@@ -84,7 +90,7 @@ def main():
     L = []
     GO(n, INIT_STATE ^ STATE_XOR_MASK)
     print "[%d, %3d]" %(n, len(L))
-    dump(L)
+    dump(L, L2)
     #print '-' * 80
 
 if __name__ == '__main__':
