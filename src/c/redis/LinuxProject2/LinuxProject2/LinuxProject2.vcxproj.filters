@@ -1,0 +1,113 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Source files">
+      <UniqueIdentifier>{df8cef58-4e54-4018-8a34-70d2bddd0ce3}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="Header files">
+      <UniqueIdentifier>{60071078-8681-4014-b34a-957d757f45c2}</UniqueIdentifier>
+      <Extensions>h;hpp;hxx;hm;inl;inc;xsd</Extensions>
+    </Filter>
+    <Filter Include="Resource files">
+      <UniqueIdentifier>{8172f018-d23b-46f1-b293-c977e043027d}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav</Extensions>
+    </Filter>
+    <Filter Include="Make files">
+      <UniqueIdentifier>{0c724e15-03b7-4860-84a9-de08b95e134a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="VisualGDB settings">
+      <UniqueIdentifier>{d7a55558-e2d8-448c-98fa-d7d879e030d7}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="debug.mak">
+      <Filter>Make files</Filter>
+    </None>
+    <None Include="release.mak">
+      <Filter>Make files</Filter>
+    </None>
+    <None Include="LinuxProject2-Debug.vgdbsettings">
+      <Filter>VisualGDB settings</Filter>
+    </None>
+    <None Include="LinuxProject2-Release.vgdbsettings">
+      <Filter>VisualGDB settings</Filter>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Makefile" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="src\adlist.c">
+      <Filter>Source files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\ae.c">
+      <Filter>Source files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\aeepoll.c">
+      <Filter>Source files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\anet.c">
+      <Filter>Source files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\dict.c">
+      <Filter>Source files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\networking.c">
+      <Filter>Source files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\object.c">
+      <Filter>Source files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\redis.c">
+      <Filter>Source files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\sds.c">
+      <Filter>Source files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\t_string.c">
+      <Filter>Source files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\util.c">
+      <Filter>Source files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\zmalloc.c">
+      <Filter>Source files</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="src\adlist.h">
+      <Filter>Source files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\ae.h">
+      <Filter>Source files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\aeepoll.h">
+      <Filter>Source files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\anet.h">
+      <Filter>Source files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\dict.h">
+      <Filter>Source files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\fmacros.h">
+      <Filter>Source files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\object.h">
+      <Filter>Source files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\redis.h">
+      <Filter>Source files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\sds.h">
+      <Filter>Source files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\util.h">
+      <Filter>Source files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\zmalloc.h">
+      <Filter>Source files</Filter>
+    </ClInclude>
+  </ItemGroup>
+</Project>

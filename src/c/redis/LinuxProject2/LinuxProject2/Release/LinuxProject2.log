@@ -1,0 +1,29 @@
+﻿Build started 2018/5/7 23:11:25.
+     1>Project "d:\github\xgo\src\c\redis\LinuxProject2\LinuxProject2\LinuxProject2.vcxproj" on node 2 (build target(s)).
+     1>Build:
+         "C:\Program Files (x86)\Sysprogs\VisualGDB\VisualGDB.exe" /build "d:\github\xgo\src\c\redis\LinuxProject2\LinuxProject2\LinuxProject2.vcxproj" "/solution:d:\github\xgo\src\c\redis\LinuxProject2\LinuxProject2.sln"  "/config:Release" "/platform:Win32"
+         VisualGDB: Sending 1 updated source file to build machine...
+         VisualGDB: Run "make  CONFIG=Release" in directory "/tmp/VisualGDB/d/github/xgo/src/c/redis/LinuxProject2/LinuxProject2" on laoguo@192.168.1.109 (SSH)
+         gcc -std=gnu99 -ggdb -ffunction-sections -O3   -DNDEBUG=1 -DRELEASE=1  -c LinuxProject2.c -o Release/LinuxProject2.o -MD -MF Release/LinuxProject2.dep
+         LinuxProject2.c: In function ‘main’:
+     1>d:\github\xgo\src\c\redis\LinuxProject2\LinuxProject2\LinuxProject2.c(10,2): error : too few arguments to function ‘open’
+           fd = open("./a.txt");
+           ^
+         C:\Users\laoguo\AppData\Local\VisualGDB\RemoteSourceCache\192.168.1.109\0000\include\fcntl.h(279):
+         d:\github\xgo\src\c\redis\LinuxProject2\LinuxProject2\LinuxProject2.c(5):
+         C:\Users\laoguo\AppData\Local\VisualGDB\RemoteSourceCache\192.168.1.109\0000\include\x86_64-linux-gnu\bits\fcntl2.h(41,1): note :  declared here
+          open (const char *__path, int __oflag, ...)
+          ^
+         make: *** [Release/LinuxProject2.o] Error 1
+         -------------------------------------------------------------
+         Command exited with code 2
+         Executable: make
+         Arguments:  CONFIG=Release
+         Directory: /tmp/VisualGDB/d/github/xgo/src/c/redis/LinuxProject2/LinuxProject2
+     1>VisualGDB : error : Command-line action failed
+     1>C:\Program Files (x86)\MSBuild\Microsoft.Cpp\v4.0\Microsoft.MakeFile.Targets(38,5): error MSB3073: The command ""C:\Program Files (x86)\Sysprogs\VisualGDB\VisualGDB.exe" /build "d:\github\xgo\src\c\redis\LinuxProject2\LinuxProject2\LinuxProject2.vcxproj" "/solution:d:\github\xgo\src\c\redis\LinuxProject2\LinuxProject2.sln"  "/config:Release" "/platform:Win32"" exited with code 1.
+     1>Done Building Project "d:\github\xgo\src\c\redis\LinuxProject2\LinuxProject2\LinuxProject2.vcxproj" (build target(s)) -- FAILED.
+
+Build FAILED.
+
+Time Elapsed 00:00:01.82

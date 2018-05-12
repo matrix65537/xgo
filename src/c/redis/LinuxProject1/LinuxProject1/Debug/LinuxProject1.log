@@ -1,0 +1,13 @@
+﻿Build started 2018/5/7 23:56:45.
+     1>Project "d:\github\xgo\src\c\redis\LinuxProject1\LinuxProject1\LinuxProject1.vcxproj" on node 2 (build target(s)).
+     1>Build:
+         "C:\Program Files (x86)\Sysprogs\VisualGDB\VisualGDB.exe" /build "d:\github\xgo\src\c\redis\LinuxProject1\LinuxProject1\LinuxProject1.vcxproj" "/solution:d:\github\xgo\src\c\redis\LinuxProject1\LinuxProject1.sln"  "/config:Debug" "/platform:Win32"
+         VisualGDB: Sending 1 updated source file to build machine...
+         VisualGDB: Run "make  CONFIG=Debug" in directory "/tmp/VisualGDB/d/github/xgo/src/c/redis/LinuxProject1/LinuxProject1" on laoguo@192.168.1.109 (SSH)
+         gcc -std=gnu99 -ggdb -ffunction-sections -O0   -DDEBUG=1  -c src/zmalloc.c -o Debug/zmalloc.o -MD -MF Debug/zmalloc.dep
+         g++ -o Debug/LinuxProject1 -Wl,-gc-sections    -Wl,--start-group Debug/main.o Debug/sds.o Debug/zmalloc.o   -Wl,--rpath='$ORIGIN'   -Wl,--end-group
+     1>Done Building Project "d:\github\xgo\src\c\redis\LinuxProject1\LinuxProject1\LinuxProject1.vcxproj" (build target(s)).
+
+Build succeeded.
+
+Time Elapsed 00:00:01.86
