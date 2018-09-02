@@ -9,6 +9,7 @@ import time
 from flask import Flask,g,request,make_response
 import hashlib
 import xml.etree.ElementTree as ET
+import daemon_init
 
 
 
@@ -51,5 +52,6 @@ def hello():
     return "ABCD"
 
 if __name__ == "__main__":
+    daemon_init.daemon_init()
     app.run(host = "0.0.0.0", port = 80)
 
