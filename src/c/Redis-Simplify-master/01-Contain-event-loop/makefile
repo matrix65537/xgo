@@ -7,6 +7,7 @@ OBJS	:= $(SRCS:.c=.o) # 将所有的.c文件名替换为.o
 
 .PHONY: all clean
 
+<<<<<<< HEAD
 BINOS	= $(addsuffix .o, $(BINS))
 TEMP_OBJ= $(filter-out $(BINOS), $^)
 
@@ -14,6 +15,13 @@ all:$(BINS)
 	@echo "->" $(BINOS)
 	@echo "->" $(TEMP_OBJ)
 
+=======
+all:$(BINS)
+
+BINOS	= $(addsuffix .o, $(BINS))
+TEMP_OBJ= $(filter-out $(BINOS), $^)
+
+>>>>>>> 3cfcb38beb674ff28e08452a838828b444a3c250
 $(BINS):$(OBJS) 
 	@echo "正在链接程序......";
 	$(foreach BIN, $@, $(CC) $(CFLAGS) $(TEMP_OBJ) $(BIN).o $(LFLAGS) -o $(BIN));   

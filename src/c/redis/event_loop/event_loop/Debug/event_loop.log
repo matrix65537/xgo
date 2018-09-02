@@ -1,0 +1,35 @@
+﻿Build started 2018/5/9 21:29:37.
+     1>Project "d:\github\xgo\src\c\redis\event_loop\event_loop\event_loop.vcxproj" on node 2 (rebuild target(s)).
+     1>CoreClean:
+         "C:\Program Files (x86)\Sysprogs\VisualGDB\VisualGDB.exe" /clean "d:\github\xgo\src\c\redis\event_loop\event_loop\event_loop.vcxproj" "/solution:d:\github\xgo\src\c\redis\event_loop\event_loop.sln"  "/config:Debug" "/platform:Win32"
+         VisualGDB: Run "make  CONFIG=Debug clean" in directory "/tmp/VisualGDB/d/github/xgo/src/c/redis/event_loop/event_loop" on laoguo@192.168.1.109 (SSH)
+         rm -rf Debug
+       Rebuild:
+         "C:\Program Files (x86)\Sysprogs\VisualGDB\VisualGDB.exe" /rebuild "d:\github\xgo\src\c\redis\event_loop\event_loop\event_loop.vcxproj" "/solution:d:\github\xgo\src\c\redis\event_loop\event_loop.sln"  "/config:Debug" "/platform:Win32"
+         VisualGDB: Run "make  CONFIG=Debug clean" in directory "/tmp/VisualGDB/d/github/xgo/src/c/redis/event_loop/event_loop" on laoguo@192.168.1.109 (SSH)
+         rm -rf Debug
+         VisualGDB: Sending 29 updated source files to build machine...
+         VisualGDB: Run "make  CONFIG=Debug" in directory "/tmp/VisualGDB/d/github/xgo/src/c/redis/event_loop/event_loop" on laoguo@192.168.1.109 (SSH)
+         mkdir Debug
+         gcc -std=gnu99 -ggdb -ffunction-sections -O0   -DDEBUG=1  -c src/adlist.c -o Debug/adlist.o -MD -MF Debug/adlist.dep
+         gcc -std=gnu99 -ggdb -ffunction-sections -O0   -DDEBUG=1  -c src/ae.c -o Debug/ae.o -MD -MF Debug/ae.dep
+         gcc -std=gnu99 -ggdb -ffunction-sections -O0   -DDEBUG=1  -c src/aeepoll.c -o Debug/aeepoll.o -MD -MF Debug/aeepoll.dep
+         gcc -std=gnu99 -ggdb -ffunction-sections -O0   -DDEBUG=1  -c src/anet.c -o Debug/anet.o -MD -MF Debug/anet.dep
+         src/anet.c: In function ‘_anetTcpServer’:
+     1>d:\github\xgo\src\c\redis\event_loop\event_loop\src\anet.c(125,16): warning : initialization discards ‘const’ qualifier from pointer target type [enabled by default]
+            char* info = inet_ntop(p->ai_family, (const void*)(&sock_addr->sin_addr.s_addr), buf, sizeof(buf));
+                         ^
+         gcc -std=gnu99 -ggdb -ffunction-sections -O0   -DDEBUG=1  -c src/dict.c -o Debug/dict.o -MD -MF Debug/dict.dep
+         gcc -std=gnu99 -ggdb -ffunction-sections -O0   -DDEBUG=1  -c src/networking.c -o Debug/networking.o -MD -MF Debug/networking.dep
+         gcc -std=gnu99 -ggdb -ffunction-sections -O0   -DDEBUG=1  -c src/object.c -o Debug/object.o -MD -MF Debug/object.dep
+         gcc -std=gnu99 -ggdb -ffunction-sections -O0   -DDEBUG=1  -c src/redis.c -o Debug/redis.o -MD -MF Debug/redis.dep
+         gcc -std=gnu99 -ggdb -ffunction-sections -O0   -DDEBUG=1  -c src/sds.c -o Debug/sds.o -MD -MF Debug/sds.dep
+         gcc -std=gnu99 -ggdb -ffunction-sections -O0   -DDEBUG=1  -c src/t_string.c -o Debug/t_string.o -MD -MF Debug/t_string.dep
+         gcc -std=gnu99 -ggdb -ffunction-sections -O0   -DDEBUG=1  -c src/util.c -o Debug/util.o -MD -MF Debug/util.dep
+         gcc -std=gnu99 -ggdb -ffunction-sections -O0   -DDEBUG=1  -c src/zmalloc.c -o Debug/zmalloc.o -MD -MF Debug/zmalloc.dep
+         g++ -o Debug/event_loop -Wl,-gc-sections    -Wl,--start-group Debug/adlist.o Debug/ae.o Debug/aeepoll.o Debug/anet.o Debug/dict.o Debug/networking.o Debug/object.o Debug/redis.o Debug/sds.o Debug/t_string.o Debug/util.o Debug/zmalloc.o   -Wl,--rpath='$ORIGIN'   -Wl,--end-group
+     1>Done Building Project "d:\github\xgo\src\c\redis\event_loop\event_loop\event_loop.vcxproj" (rebuild target(s)).
+
+Build succeeded.
+
+Time Elapsed 00:00:07.23

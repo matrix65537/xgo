@@ -1,0 +1,24 @@
+﻿Build started 2018/5/7 21:54:03.
+     1>Project "d:\github\xgo\src\c\redis\redis\redis.vcxproj" on node 2 (build target(s)).
+     1>PrepareForBuild:
+         Creating directory "D:\github\xgo\src\c\redis\Debug\".
+       InitializeBuildStatus:
+         Creating "Debug\redis.unsuccessfulbuild" because "AlwaysCreate" was specified.
+       ClCompile:
+         C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\bin\CL.exe /c /ZI /nologo /W3 /WX- /Od /Oy- /D WIN32 /D _DEBUG /D _CONSOLE /D _UNICODE /D UNICODE /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc100.pdb" /Gd /TC /analyze- /errorReport:prompt src\sds.c src\zmalloc.c
+         zmalloc.c
+     1>d:\github\xgo\src\c\redis\redis\src\zmalloc.c(43): fatal error C1083: Cannot open include file: 'pthread.h': No such file or directory
+         sds.c
+     1>d:\github\xgo\src\c\redis\redis\src\sds.h(47): error C2054: expected '(' to follow 'inline'
+     1>d:\github\xgo\src\c\redis\redis\src\sds.h(47): error C2085: 'sdslen' : not in formal parameter list
+     1>d:\github\xgo\src\c\redis\redis\src\sds.h(47): error C2143: syntax error : missing ';' before '{'
+     1>d:\github\xgo\src\c\redis\redis\src\sds.h(52): error C2054: expected '(' to follow 'inline'
+     1>d:\github\xgo\src\c\redis\redis\src\sds.h(52): error C2085: 'sdsavail' : not in formal parameter list
+     1>d:\github\xgo\src\c\redis\redis\src\sds.h(52): error C2143: syntax error : missing ';' before '{'
+     1>d:\github\xgo\src\c\redis\redis\src\sds.c(311): warning C4013: 'va_copy' undefined; assuming extern returning int
+         Generating Code...
+     1>Done Building Project "d:\github\xgo\src\c\redis\redis\redis.vcxproj" (build target(s)) -- FAILED.
+
+Build FAILED.
+
+Time Elapsed 00:00:00.80
