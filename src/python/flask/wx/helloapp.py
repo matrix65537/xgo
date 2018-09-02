@@ -10,12 +10,29 @@ from flask import Flask,g,request,make_response
 import hashlib
 import xml.etree.ElementTree as ET
 import daemon_init
+import requests
 
 
 
 app = Flask(__name__)
 
 i = 0
+
+import itchat
+
+KEY = 'bc0f806fd9be4be09a8c40d3315263d7'
+def get_response(msg):
+    apiUrl = 'http://www.tuling123.com/openapi/api'
+    data = {
+        'key': KEY,
+        'info': msg,
+        'userid': 'pth-robot',
+    }
+    try:
+        r = requests.post(apiUrl, data=data).json()
+        return r.get('text')
+    except:
+        return
 
 @app.route("/", methods = ['GET', 'POST'])
 def hello():
@@ -45,6 +62,8 @@ def hello():
         tou = xml_rec.find('ToUserName').text
         fromu = xml_rec.find('FromUserName').text
         content = xml_rec.find('Content').text
+        content = make_response(content)
+        content = "[%d] %s" %(content, i)
         xml_rep = "<xml><ToUserName><![CDATA[%s]]></ToUserName><FromUserName><![CDATA[%s]]></FromUserName><CreateTime>%s</CreateTime><MsgType><![CDATA[text]]></MsgType><Content><![CDATA[%s]]></Content><FuncFlag>0</FuncFlag></xml>"
         response = make_response(xml_rep % (fromu,tou,str(int(time.time())), content))
         response.content_type='application/xml'
