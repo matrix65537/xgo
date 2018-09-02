@@ -10,7 +10,8 @@ def b2s(bytes):
     return s
 
 ip = '127.0.0.1'
-port = 9090
+ip = '47.94.106.99'
+port = 8080
 
 COUNT = 1
 SOCK_COUNT = 10
@@ -30,9 +31,9 @@ def main():
         sock.connect((ip, port))
         s_list.append(sock)
 
+    data =  b("010203040506") * 10
     for i in range(COUNT):
         for sock in s_list:
-            data =  b("010203040506") * 10
             print "<< ", s(data)
             sock.send(data)
             r = recvall(sock, len(data))

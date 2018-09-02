@@ -14,7 +14,7 @@ int main(int argc, char* argv[])
     char buf[0x100];
     memset(buf, 'A', sizeof(buf));
     
-    fd = open(argv[1], O_RDWR | O_CREAT);
+    fd = open(argv[1], O_RDWR | O_CREAT, 0755);
     if(fd == -1)
     {
         perror("open error");

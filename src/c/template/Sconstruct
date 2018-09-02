@@ -1,0 +1,32 @@
+import os
+import os.path
+
+LIBPATH     = "../libs"
+LIBNAME     = "lgutil"
+CLANG       = "/home/laoguo/toolchains/clang/build/bin/clang"
+
+CC          = CLANG
+CPPPATH     = [".", LIBPATH]
+CCFLAGS     = ["-O0", "-g"]
+CPPDEFINES  = ["DEBUG"]
+LIBPATH     = [LIBPATH]
+LIBS        = [LIBNAME]
+LINKFLAGS   = []
+
+
+env = Environment(
+    CC = CC,
+    CPPPATH = CPPPATH,
+    CCFLAGS = CCFLAGS,
+    CPPDEFINES = CPPDEFINES,
+    LIBPATH = LIBPATH,
+    LIBS = LIBS,
+    LINKFLAGS = LINKFLAGS,
+    )
+
+dir_name = os.path.abspath(".")
+print dir_name
+base_name = os.path.basename(dir_name)
+
+env.Program(target = base_name, source = Glob("./*.c"))
+

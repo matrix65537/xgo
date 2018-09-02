@@ -2,7 +2,7 @@
 #include <ctype.h>
 #include "util.h"
 
-void util_hex_dump(char* name, uint8_t* pData, uint32_t len)
+void util_hex_dump(const char* name, const uint8_t* pData, uint32_t len)
 {
     int i;
     int j;
@@ -82,7 +82,7 @@ void util_hex_dump(char* name, uint8_t* pData, uint32_t len)
 void test_util()
 {
     int i;
-    char buf[0x100];
+    uint8_t buf[0x100];
     for (i = 0; i < 0x100; ++i)
     {
         buf[i] = i;

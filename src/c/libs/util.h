@@ -3,7 +3,7 @@
 
 #include <stdint.h>
 
-void util_hex_dump(char* name, uint8_t* pData, uint32_t len);
+void util_hex_dump(const char* name, const uint8_t* pData, uint32_t len);
 
 #endif
 

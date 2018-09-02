@@ -1,0 +1,27 @@
+import os
+import os.path
+
+LIB_NAME    = "lgutil"
+CLANG       = "/home/laoguo/toolchains/clang/build/bin/clang"
+
+CC          = CLANG
+CPPPATH     = [".", "/home/laoguo/toolchains/arm-2014.05/arm-none-linux-gnueabi/libc/usr/include"]
+CCFLAGS     = ["-O0", "-g", "-target", "armv5-none-eabi"]
+CPPDEFINES  = ["DEBUG"]
+LIBPATH     = []
+LIBS        = []
+LINKFLAGS   = []
+
+
+env = Environment(
+    CC = CC,
+    CPPPATH = CPPPATH,
+    CCFLAGS = CCFLAGS,
+    CPPDEFINES = CPPDEFINES,
+    LIBPATH = LIBPATH,
+    LIBS = LIBS,
+    LINKFLAGS = LINKFLAGS,
+    )
+
+env.StaticLibrary(target = LIB_NAME, source = Glob("./*.c"))
+

@@ -4,14 +4,14 @@
 #include "time.h"
 #include "log.h"
 
-static int s_log_level = LOG_LEVEL_DBUG;
+static int s_log_level = LOG_LEVEL_INFO;
 
 void log_set_level(int level)
 {
     s_log_level = level;
 }
 
-int log_get_level()
+int log_get_level(void)
 {
     return s_log_level;
 }

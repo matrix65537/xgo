@@ -110,8 +110,14 @@ void RWProc(struct aeEventLoop* eventLoop, int fd, void* clientData, int mask)
 		log_debug("WriteProc\n");
 		size = get_data_size(ring);
 		ring_read_data(ring, ring->temp_buf, size);
+		ret = send(fd, "=> ", 0x03, 0);
+		if(ret <= 0)
+		{
+			log_error("client exit, close socket.\n");
+			close(fd);
+			delete_ring(ring);
+		}
 		ret = send(fd, ring->temp_buf, size, 0);
-
 		if(ret <= 0)
 		{
 			log_error("client exit, close socket.\n");
@@ -173,7 +179,7 @@ int main()
 	int r;
 	aeEventLoop* eventLoop = aeCreateEventLoop();
 
-    go_daemon();
+    //go_daemon();
 
 	log_set_level(LOG_LEVEL_DEVP);
 
@@ -208,8 +214,8 @@ int main()
 		exit(1);
 	}
 
-	aeCreateTimeEvent(eventLoop, TIMER1_MS, Timer1, NULL, NULL);
-	aeCreateTimeEvent(eventLoop, TIMER2_MS, Timer2, NULL, NULL);
+	//aeCreateTimeEvent(eventLoop, TIMER1_MS, Timer1, NULL, NULL);
+	//aeCreateTimeEvent(eventLoop, TIMER2_MS, Timer2, NULL, NULL);
 
 	aeCreateFileEvent(eventLoop, server_listen_fd, AE_READABLE, ListenProc, NULL);
 

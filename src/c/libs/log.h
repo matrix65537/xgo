@@ -14,7 +14,7 @@ enum
 
 void log_set_level(int level);
 
-int log_get_level();
+int log_get_level(void);
 
 void log_output(const char* tag, int level, const char* fmt, ...);
 
