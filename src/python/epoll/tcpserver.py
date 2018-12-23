@@ -72,15 +72,10 @@ class TCPServer(object):
 
     def callback_read_write(self, sock, fd, events):
         if events & IOLoop.READ:
-            counter = 0
             while True:
                 try:
                     data = sock.recv(0x1000)
-                    counter += 1
-                    info("[%d] recv data, counter = %d" %(fd, counter))
-                    if counter == 0x08:
-                        pass
-                        #break
+                    info("[%d] recv data" %(fd))
                     if len(data) == 0:
                         self.release_sock(sock, fd)
                         break

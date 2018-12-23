@@ -62,6 +62,6 @@ class ServerA(TCPServer):
 
 if __name__ == '__main__':
     log.set_log_level(6)
-    server = ServerA(8000)
+    server = ServerA(8080)
     server.start()
 
